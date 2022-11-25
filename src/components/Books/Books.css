@@ -1,0 +1,23 @@
+.books {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 3rem;
+  align-items: center;
+}
+
+.books-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.cart-container {
+  background-color: rgb(151, 155, 155);
+  color: rgb(18, 16, 16);
+  width: 30%;
+  height: auto;
+  align-self: end;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  text-align: left;
+}
