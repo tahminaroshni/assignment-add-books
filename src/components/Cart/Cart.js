@@ -1,4 +1,5 @@
 import React from 'react';
+import { restoreFromLocalStorage } from '../local-storage/localStorage';
 import './Cart.css'
 
 const Cart = (props) => {
@@ -6,15 +7,20 @@ const Cart = (props) => {
 
   let cartsQuantity = 0;
   let totalPrice = 0;
-
-  for (const cart of carts) {
-    cart.quantity = cart.quantity ? cart.quantity : 1;
-    cartsQuantity += cart.quantity;
-    console.log(cart.quantity, cartsQuantity);
-    const cartsPrice = cart.quantity * cart.price;
-    totalPrice += cartsPrice;
+  const myCart = restoreFromLocalStorage();
+  for (const key in myCart) {
+    const cartQuantity = myCart[key];
+    console.log(cartQuantity);
+    cartsQuantity += cartQuantity;
+    const cart = carts.find(cart => cart.name === key);
     console.log(cart);
+    if (cart) {
+      const cartPrice = cart.price;
+      const cartsPrice = cartQuantity * cartPrice;
+      totalPrice += cartsPrice;
+    }
   }
+
 
   // const totalPrice = carts.reduce((previous, current) => previous + current.price, 0);
 
